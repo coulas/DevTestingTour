@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fedou.workshop.DevTestingTour</groupId>
+        <artifactId>DevTestingTour</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.fedou.workshop.DevTestingTour</groupId>
+    <artifactId>package</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!-- Spring boot dependency-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Application modules-->
+        <dependency>
+            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <artifactId>exposition</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <artifactId>application</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <artifactId>domaine</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <artifactId>infrastructure</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+    <profiles>
+        <!--
+            For development on local machines. Creates an über war (launchable with java -jar XXXX.jar)
+            Detection of a Windows environment disables the prod profile (even with the "activeByDefault" tag)
+            On Windows, use "mvn clean install -P !dev" to force use of the prod profile
+            (Do it in cmd, as git bash doesn't like '!')
+        -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>com.fedou.workshop.DevTestingTour.Application</mainClass>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>repackage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
