@@ -26,7 +26,7 @@ public class TrainReservationApplicationFastIntegrationTest {
 	@Autowired
 	protected ObjectMapper mapper;
 
-	protected <T> T getResponseContentAs(MvcResult result, Class<T> valueType) throws java.io.IOException {
+	protected <T> T getResponseContentAs(MvcResult result, @SuppressWarnings("SameParameterValue") Class<T> valueType) throws java.io.IOException {
 		return mapper.readValue(result.getResponse().getContentAsString(), valueType);
 	}
 

@@ -110,6 +110,7 @@ class TicketOfficeControllerTest {
         return getResponseContentAs(result, ReservationDTO.class);
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected <T> T getResponseContentAs(MvcResult result, Class<T> valueType) throws java.io.IOException {
         return mapper.readValue(result.getResponse().getContentAsString(), valueType);
     }

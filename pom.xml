@@ -8,6 +8,7 @@
     <name>DevTestingTour</name>
     <description>Demo project for software testing</description>
     <packaging>pom</packaging>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.2.0.RELEASE</spring-boot.version>

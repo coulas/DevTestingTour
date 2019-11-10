@@ -34,14 +34,16 @@ public class Train {
         for (Coach current : coaches) {
             List<Integer> seats = current.findSeatsForBooking(numberOfSeats);
             if (!seats.isEmpty()) {
-                return Optional.of(new BookableSeats(current.getCoachId(), seats));
+                BookableSeats bookableSeats = new BookableSeats(current.getCoachId(), seats);
+                logResult(numberOfSeats, bookableSeats);
+                return Optional.of(bookableSeats);
             }
         }
-        logResult(numberOfSeats, result);
+        logResult(numberOfSeats, null);
         return Optional.empty();
     }
 
-    private void logResult(int numberOfSeats, Optional<BookableSeats> seats) {
+    private void logResult(int numberOfSeats, BookableSeats seats) {
         log.debug("Booking {} seats for train {} gives {}.", numberOfSeats, this, seats);
     }
 
