@@ -87,7 +87,7 @@ class TicketOfficeControllerIT extends TrainReservationApplicationFastIntegratio
                         .contentType(APPLICATION_JSON)
                         .content(getRequestObjectAsJson(bookingRequest)))
                 .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
         return getResponseContentAs(result, ReservationDTO.class);
     }

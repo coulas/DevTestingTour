@@ -1,4 +1,4 @@
-package com.fedou.workshops.devtestingtour.security;
+package com.fedou.workshops.devtestingtour.exposition;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

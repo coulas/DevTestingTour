@@ -1,16 +1,15 @@
 package com.fedou.workshops.devtestingtour.ticketoffice;
 
 import com.fedou.workshops.devtestingtour.TrainReservationApplicationUseCasesTest;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.ReservationDTO;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.ReservationRequestDTO;
 import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.BookableSeats;
 import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Coach;
 import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Train;
+import com.fedou.workshops.devtestingtour.exposition.ticketoffice.ReservationDTO;
+import com.fedou.workshops.devtestingtour.exposition.ticketoffice.ReservationRequestDTO;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MvcResult;
@@ -22,7 +21,6 @@ import static com.fedou.workshops.devtestingtour.exposition.ticketoffice.Reserva
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -137,7 +135,7 @@ public class TicketOfficeControllerTest extends TrainReservationApplicationUseCa
                         .contentType(APPLICATION_JSON)
                         .content(getRequestObjectAsJson(bookingRequest)))
                 .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
         return getResponseContentAs(result, ReservationDTO.class);
     }
