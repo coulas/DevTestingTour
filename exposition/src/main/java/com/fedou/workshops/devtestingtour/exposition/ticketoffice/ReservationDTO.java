@@ -1,17 +1,22 @@
 package com.fedou.workshops.devtestingtour.exposition.ticketoffice;
 
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.BookableSeats;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.Reservation;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.BookableSeats;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.util.Collections.emptyList;
 
 public class ReservationDTO {
     private String train_id;
     private String booking_reference;
     private List<String> seats;
 
-    public ReservationDTO() {}
+    public ReservationDTO() {
+    }
+
     public ReservationDTO(String train_id, String booking_reference, List<String> seats) {
         this.train_id = train_id;
         this.booking_reference = booking_reference;
@@ -66,6 +71,9 @@ public class ReservationDTO {
     }
 
     public static List<String> toDTO(BookableSeats seats) {
+        if (seats == null) {
+            return emptyList();
+        }
         return seats.getSeats().stream()
                 .map(seat -> seat + seats.getCoach())
                 .collect(Collectors.toList());

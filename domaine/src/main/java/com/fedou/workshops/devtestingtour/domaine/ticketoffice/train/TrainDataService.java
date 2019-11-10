@@ -1,4 +1,4 @@
-package com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata;
+package com.fedou.workshops.devtestingtour.domaine.ticketoffice.train;
 
 public interface TrainDataService {
 

@@ -1,8 +1,7 @@
-package com.fedou.workshops.devtestingtour.exposition.ticketoffice;
+package com.fedou.workshops.devtestingtour.domaine.ticketoffice;
 
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.BookableSeats;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.BookableSeats;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Reservation {

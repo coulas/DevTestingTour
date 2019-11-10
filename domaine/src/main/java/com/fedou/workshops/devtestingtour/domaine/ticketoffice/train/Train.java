@@ -1,4 +1,4 @@
-package com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata;
+package com.fedou.workshops.devtestingtour.domaine.ticketoffice.train;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-
-import static com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.RatioCalculation.isUnder70PercentWhenBookingOf;
 
 public class Train {
     private static Logger log = LoggerFactory.getLogger(Train.class);
@@ -33,23 +31,13 @@ public class Train {
     public Optional<BookableSeats> findSeatsForBooking(int numberOfSeats) {
         Optional<BookableSeats> result = Optional.empty();
 
-        if (isUnder70PercentWhenBookingOf(totalSeats, totalFreeSeats, numberOfSeats)) {
-            result = findSeatsForBooking(numberOfSeats, true);
-            if (!result.isPresent()) {
-                result = findSeatsForBooking(numberOfSeats, false);
-            }
-        }
-        logResult(numberOfSeats, result);
-        return result;
-    }
-
-    private Optional<BookableSeats> findSeatsForBooking(int numberOfSeats, boolean respectFreeSeatsRatioPerCoach) {
         for (Coach current : coaches) {
-            List<Integer> seats = current.findSeatsForBooking(numberOfSeats, respectFreeSeatsRatioPerCoach);
+            List<Integer> seats = current.findSeatsForBooking(numberOfSeats);
             if (!seats.isEmpty()) {
                 return Optional.of(new BookableSeats(current.getCoachId(), seats));
             }
         }
+        logResult(numberOfSeats, result);
         return Optional.empty();
     }
 

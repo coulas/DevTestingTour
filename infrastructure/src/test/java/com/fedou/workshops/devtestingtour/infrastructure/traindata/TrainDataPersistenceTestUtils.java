@@ -1,6 +1,6 @@
 package com.fedou.workshops.devtestingtour.infrastructure.traindata;
 
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.TrainDataService;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.TrainDataService;
 
 import java.util.List;
 

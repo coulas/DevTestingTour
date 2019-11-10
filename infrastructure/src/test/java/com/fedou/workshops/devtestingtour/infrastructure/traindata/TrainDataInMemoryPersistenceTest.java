@@ -1,7 +1,7 @@
 package com.fedou.workshops.devtestingtour.infrastructure.traindata;
 
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Coach;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Train;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Coach;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Train;
 import com.fedou.workshops.devtestingtour.infrastructure.RelationalPersistenceTestConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

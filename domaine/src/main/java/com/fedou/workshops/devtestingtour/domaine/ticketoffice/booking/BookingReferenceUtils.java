@@ -1,4 +1,4 @@
-package com.fedou.workshops.devtestingtour.exposition.ticketoffice.booking;
+package com.fedou.workshops.devtestingtour.domaine.ticketoffice.booking;
 
 import java.util.UUID;
 

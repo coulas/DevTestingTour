@@ -1,9 +1,8 @@
-package com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata;
+package com.fedou.workshops.devtestingtour.domaine.ticketoffice.train;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.RatioCalculation.isAbove70PercentWhenBookingOf;
 import static java.util.Collections.emptyList;
 
 public class Coach {
@@ -17,14 +16,9 @@ public class Coach {
         this.freeSeats = new LinkedList<>(freeSeats);
     }
 
-    List<Integer> findSeatsForBooking(int numberOfSeats, boolean respectFreeSeatsRatioPerCoach) {
+    List<Integer> findSeatsForBooking(int numberOfSeats) {
         if (fullBookingOverLoadThisCoach(numberOfSeats)) {
             return emptyList();
-        }
-        if (respectFreeSeatsRatioPerCoach) {
-            if (isAbove70PercentWhenBookingOf(totalSeats, freeSeats.size(), numberOfSeats)) {
-                return emptyList();
-            }
         }
         return listOfSeats(numberOfSeats);
     }

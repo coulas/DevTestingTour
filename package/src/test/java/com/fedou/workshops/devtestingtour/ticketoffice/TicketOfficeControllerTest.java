@@ -3,9 +3,10 @@ package com.fedou.workshops.devtestingtour.ticketoffice;
 import com.fedou.workshops.devtestingtour.TrainReservationApplicationUseCasesTest;
 import com.fedou.workshops.devtestingtour.exposition.ticketoffice.ReservationDTO;
 import com.fedou.workshops.devtestingtour.exposition.ticketoffice.ReservationRequestDTO;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.BookableSeats;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Coach;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Train;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.BookableSeats;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Coach;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Train;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -34,8 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @ExtendWith(SpringExtension.class)
 public class TicketOfficeControllerTest extends TrainReservationApplicationUseCasesTest {
-    @Captor
-    private ArgumentCaptor<String> booking;
 
     @WithMockUser
     @Test
@@ -63,16 +62,16 @@ public class TicketOfficeControllerTest extends TrainReservationApplicationUseCa
         BookableSeats bookedSeats = new BookableSeats("A", asList(1, 2));
 
         givenTheTrainDataServerWillProvide(train);
-        givenTheTrainDataServerWillReceiveReservation(trainId, bookedSeats);
-        verifyNoMoreInteractions(trainDataService);
 
         ReservationRequestDTO bookingRequest = new ReservationRequestDTO(trainId, 2);
 
         ReservationDTO actualReservation = whenMakeReservationFor(bookingRequest);
 
+        String bookingId = verifyTrainDataServiceReceivesReservation(trainId, bookedSeats);
+
         ReservationDTO expectedReservation = new ReservationDTO(
                 trainId,
-                booking.getValue(),
+                bookingId,
                 toDTO(bookedSeats));
 
         assertThat(actualReservation)
@@ -115,11 +114,16 @@ public class TicketOfficeControllerTest extends TrainReservationApplicationUseCa
         return new Train(trainId, coaches);
     }
 
-    private void givenTheTrainDataServerWillReceiveReservation(String trainId, BookableSeats bookedSeats) {
-        doNothing().when(trainDataService).reserve(
+    private String verifyTrainDataServiceReceivesReservation(String trainId, BookableSeats bookedSeats) {
+        ArgumentCaptor<String> booking = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<BookableSeats> seats = ArgumentCaptor.forClass(BookableSeats.class);
+        verify(trainDataService).reserve(
                 eq(trainId),
                 booking.capture(),
-                eq(bookedSeats));
+                seats.capture());
+        Assertions.assertThat(seats.getValue())
+                .isEqualToComparingFieldByField(bookedSeats);
+        return booking.getValue();
     }
 
     private void givenTheTrainDataServerWillProvide(Train train) {

@@ -1,9 +1,9 @@
 package com.fedou.workshops.devtestingtour.infrastructure.traindata;
 
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.BookableSeats;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Coach;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Train;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.TrainDataService;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.BookableSeats;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Coach;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Train;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.TrainDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;

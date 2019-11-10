@@ -1,5 +1,6 @@
 package com.fedou.workshops.devtestingtour.exposition.ticketoffice;
 
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.Reservation;
 import com.fedou.workshops.devtestingtour.trainreservation.MakeReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

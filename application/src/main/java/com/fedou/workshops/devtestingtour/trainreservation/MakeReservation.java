@@ -1,17 +1,15 @@
 package com.fedou.workshops.devtestingtour.trainreservation;
 
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.Reservation;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.BookableSeats;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.Train;
-import com.fedou.workshops.devtestingtour.exposition.ticketoffice.traindata.TrainDataService;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.Reservation;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.BookableSeats;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.Train;
+import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.TrainDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
-import static com.fedou.workshops.devtestingtour.exposition.ticketoffice.booking.BookingReferenceUtils.getUniqueBookingReference;
-import static java.util.Collections.emptyList;
+import static com.fedou.workshops.devtestingtour.domaine.ticketoffice.booking.BookingReferenceUtils.getUniqueBookingReference;
 
 @Service
 public class MakeReservation {
@@ -34,6 +32,6 @@ public class MakeReservation {
             reference = getUniqueBookingReference();
             trainDataService.reserve(trainId, reference, seats.get());
         }
-        return new Reservation(trainId, reference, seats.get());
+        return new Reservation(trainId, reference, seats.orElse(null));
     }
 }
