@@ -5,14 +5,52 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.fedou.workshop.DevTestingTour</groupId>
+        <groupId>com.fedou.workshops.devtestingtour</groupId>
         <artifactId>DevTestingTour</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.fedou.workshop.DevTestingTour</groupId>
+    <groupId>com.fedou.workshops.devtestingtour</groupId>
     <artifactId>exposition</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>com.fedou.workshops.devtestingtour</groupId>
+            <artifactId>application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fedou.workshops.devtestingtour</groupId>
+            <artifactId>domaine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -5,18 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.fedou.workshop.DevTestingTour</groupId>
+        <groupId>com.fedou.workshops.devtestingtour</groupId>
         <artifactId>DevTestingTour</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.fedou.workshop.DevTestingTour</groupId>
+    <groupId>com.fedou.workshops.devtestingtour</groupId>
     <artifactId>application</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <groupId>com.fedou.workshops.devtestingtour</groupId>
             <artifactId>domaine</artifactId>
         </dependency>
         <dependency>
@@ -28,4 +29,19 @@
             <artifactId>spring-tx</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

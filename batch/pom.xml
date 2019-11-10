@@ -5,24 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.fedou.workshop.DevTestingTour</groupId>
+        <groupId>com.fedou.workshops.devtestingtour</groupId>
         <artifactId>DevTestingTour</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.fedou.workshop.DevTestingTour</groupId>
+    <groupId>com.fedou.workshops.devtestingtour</groupId>
     <artifactId>batch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <groupId>com.fedou.workshops.devtestingtour</groupId>
             <artifactId>application</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.fedou.workshop.DevTestingTour</groupId>
+            <groupId>com.fedou.workshops.devtestingtour</groupId>
             <artifactId>domaine</artifactId>
             <scope>runtime</scope>
         </dependency>
@@ -76,6 +76,17 @@
                             </mainClass>
                             <executable>true</executable>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
