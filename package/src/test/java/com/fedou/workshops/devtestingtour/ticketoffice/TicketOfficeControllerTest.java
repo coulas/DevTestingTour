@@ -125,7 +125,7 @@ public class TicketOfficeControllerTest extends TrainReservationApplicationUseCa
     }
 
     private void givenTheTrainDataServerWillProvide(Train train) {
-        doReturn(train).when(trainDataService).getTrainById(train.getTrainId());
+        doReturn(train).when(trainDataService).getByTrain(train.getTrainId());
     }
 
 

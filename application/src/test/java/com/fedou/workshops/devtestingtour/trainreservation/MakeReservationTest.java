@@ -43,7 +43,7 @@ class MakeReservationTest {
     void should_book_available_seats() {
         String trainId = "trainId";
         doReturn(new Train(trainId, singletonList(new Coach("A", 10, asList(3, 5, 6, 7, 8, 9, 10)))))
-                .when(trainDataService).getTrainById(trainId);
+                .when(trainDataService).getByTrain(trainId);
 
         Reservation reservation = service.book(trainId, 1);
 
@@ -55,7 +55,7 @@ class MakeReservationTest {
         String trainId = "trainId";
 
         doReturn(new Train(trainId, singletonList(new Coach("A", 1, emptyList()))))
-                .when(trainDataService).getTrainById(trainId);
+                .when(trainDataService).getByTrain(trainId);
 
         Reservation reservation = service.book(trainId, 1);
 
@@ -67,7 +67,7 @@ class MakeReservationTest {
         String trainId = "trainId";
 
         doReturn(new Train(trainId, singletonList(new Coach("A", 5, asList(1, 3, 4, 5)))))
-                .when(trainDataService).getTrainById(trainId);
+                .when(trainDataService).getByTrain(trainId);
 
         Reservation reservation = service.book(trainId, 2);
 
@@ -80,7 +80,7 @@ class MakeReservationTest {
         doReturn(new Train(trainId, asList(
                 new Coach("A", 10, asList(6, 7, 8, 9, 10)),
                 new Coach("B", 10, asList(4, 5, 6, 7, 8, 9, 10))
-        ))).when(trainDataService).getTrainById(trainId);
+        ))).when(trainDataService).getByTrain(trainId);
 
         Reservation reservation = service.book(trainId, 6);
 

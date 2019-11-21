@@ -7,6 +7,7 @@ import com.fedou.workshops.devtestingtour.domaine.ticketoffice.train.TrainDataSe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static com.fedou.workshops.devtestingtour.domaine.ticketoffice.booking.BookingReferenceUtils.getUniqueBookingReference;
@@ -25,7 +26,7 @@ public class MakeReservation {
         if (numberOfSeats <= 0) {
             return failed_reservation;
         }
-        Train train = trainDataService.getTrainById(trainId);
+        Train train = trainDataService.getByTrain(trainId);
         Optional<BookableSeats> seats = train.findSeatsForBooking(numberOfSeats);
         String reference = "";
         if (seats.isPresent()) {
@@ -34,4 +35,5 @@ public class MakeReservation {
         }
         return new Reservation(trainId, reference, seats.orElse(null));
     }
+
 }

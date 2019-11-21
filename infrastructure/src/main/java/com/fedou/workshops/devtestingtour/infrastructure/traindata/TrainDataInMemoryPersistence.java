@@ -27,8 +27,8 @@ public class TrainDataInMemoryPersistence implements TrainDataService {
     }
 
     @Override
-    public Train getTrainById(String trainId) {
-        List<TrainData> trainData = trainDataDAO.findByTrain(trainId);
+    public Train getByTrain(String train) {
+        List<TrainData> trainData = trainDataDAO.findByTrain(train);
         Map<String, List<Integer>> freeSeatsBuilder = new HashMap<>();
         Map<String, Integer> totalSeatsBuilder = new HashMap<>();
         trainData.forEach(seat -> {
@@ -47,7 +47,7 @@ public class TrainDataInMemoryPersistence implements TrainDataService {
                                 key,
                                 value,
                                 freeSeatsBuilder.getOrDefault(key, emptyList()))));
-        return new Train(trainId, coaches);
+        return new Train(train, coaches);
     }
 
 }

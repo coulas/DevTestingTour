@@ -24,11 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @ExtendWith(SpringExtension.class)
 public class TrainDataInMemoryPersistenceTest {
 
-//    @Autowired
-//    private DataSource dataSource;
-//    @Autowired
-//    private JdbcTemplate jdbcTemplate;
-
     @Autowired
     private EntityManager entityManager;
 
@@ -65,7 +60,7 @@ public class TrainDataInMemoryPersistenceTest {
                 new TrainData("trainId", "coach", 2)
         ).forEach(row -> entityManager.persist(row));
         entityManager.flush();
-        Train train = trainDataPersistence.getTrainById("trainId");
+        Train train = trainDataPersistence.getByTrain("trainId");
         assertThat(train).usingRecursiveComparison().isEqualTo(
                 new Train("trainId", asList(
                         new Coach("coach", 2, asList(1, 2))
@@ -83,7 +78,7 @@ public class TrainDataInMemoryPersistenceTest {
                 new TrainData("trainId", "coach2", 2)
         ).forEach(row -> entityManager.persist(row));
         entityManager.flush();
-        Train actualTrain = trainDataPersistence.getTrainById("trainId");
+        Train actualTrain = trainDataPersistence.getByTrain("trainId");
         Train expectedTrain = new Train("trainId", asList(
                 new Coach("coach", 3, asList(2, 3)),
                 new Coach("coach2", 2, asList(1, 2))
