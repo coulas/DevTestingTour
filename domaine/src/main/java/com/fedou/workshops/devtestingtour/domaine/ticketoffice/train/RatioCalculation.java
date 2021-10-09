@@ -5,10 +5,6 @@ final class RatioCalculation {
         throw new Exception("this class holds utility methods only, no instances wanted");
     }
 
-    static boolean isUnder70PercentWhenBookingOf(int totalSeats, int totalFreeSeats, int numberOfSeats) {
-        return !isAbove70PercentWhenBookingOf(totalSeats, totalFreeSeats, numberOfSeats);
-    }
-
     static boolean isAbove70PercentWhenBookingOf(int totalSeats, int freeSeats, int seatsToBook) {
         if (totalSeats <= 0) return true; // should not book seats in train without seats (Fret ???)
         int actualBookedSeats = totalSeats - freeSeats;
